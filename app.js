@@ -4,7 +4,7 @@ const KoaRouter = require('koa-router');
 const logger = require('koa-logger');  
 const json = require('koa-json');
 
-//instacing classes
+//instancing classes
 const app = new Koa();
 const router = new KoaRouter({
     prefix: '/medicamento'
