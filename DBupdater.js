@@ -1,23 +1,23 @@
-/*This module will donwload the the file from the website, save it as csv, them convert it to a jso file*/
+/*This module will donwload the the file from the website, save it as csv them convert it to a JSON file*/
 
 const url = 'https://dados.anvisa.gov.br/dados/TA_PRECO_MEDICAMENTO.csv'; //This is the url we will download from
 
 const fs = require('fs');
 const https = require('https');
 const csv = require('csvtojson');
-const csvFilePath='./newtable.csv';
+const csvFilePath='./newtable.csv'; //Path for the csv to JSON package
 
 process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';  
 
-console.log("Intiating DB update, from file " + url);
+console.log("Initiating DB update, from file " + url);
   
 https.get(url,(res) => {
     const path = './newtable.csv'; 
-    const filePath = fs.createWriteStream(path);
+    const filePath = fs.createWriteStream(path); //creates the new CSV
     res.pipe(filePath);
-    filePath.on('finish',() => {
-        filePath.close();
-        console.log('Download Completed'); //downloads the file
+      filePath.on('finish',() => {
+      filePath.close();
+        console.log('Download Completed');
         csv() //starts the csv converter func
             .fromFile(csvFilePath)
             .then((jsonObj)=>{fs.writeFile('myjsonfile.json', JSON.stringify(jsonObj), 'utf8',function (err) {

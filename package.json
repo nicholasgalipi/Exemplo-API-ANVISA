@@ -5,9 +5,10 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "test": "jest"
+    "test": "jest",
+    "dbupdate": "node DBupdater.js"
   },
-  "author": "",
+  "author": "https://github.com/nicholasgalipi",
   "license": "ISC",
   "dependencies": {
     "csvtojson": "^2.0.10",
