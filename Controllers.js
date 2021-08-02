@@ -12,7 +12,7 @@ exports.getByName = (ctx) => { //get pelo nome comercial
         ctx.body = filtered;
     }else{
         ctx.status = 404;
-        this.body = {message: "Not Found"};
+        ctx.body = {message: "Not Found"};
     }
     
 }
@@ -25,7 +25,7 @@ exports.getByActive = (ctx) => { //get pelo nome do principio ativo
         ctx.body = filtered;
     }else{
         ctx.status = 404;
-        this.body = {message: "Not Found"};
+        ctx.body = {message: "Not Found"};
     }
     
 }
