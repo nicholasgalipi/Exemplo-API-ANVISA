@@ -16,7 +16,7 @@ exports.getByName = (ctx) => { //get pelo nome comercial
     if(filtered.length > 0){
         ctx.body = filtered;
     }else{
-        ctx.status = 404;
+        ctx.status = 404
         ctx.body = {message: "Bad request"};
     }
     
@@ -32,7 +32,7 @@ exports.getByActive = (ctx) => { //get pelo nome do principio ativo
     if(filtered.length > 0){
         ctx.body = filtered;
     }else{
-        ctx.status = 404;
+        ctx.status = 404
         ctx.body = {message: "Bad request"};
     }
 }
