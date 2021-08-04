@@ -2,8 +2,8 @@ const data = require('./preco_remedio_consumidor.json');
 const Controllers = require('./Controllers');
 const fetch = require('node-fetch');
 
-const getByName = "http://localhost:8080/get_by_product_name"
-const getByActive = "http://localhost:8080/get_by_active_ingredient"
+const getByName = "http://localhost:8080/get_by_product_name?name="
+const getByActive = "http://localhost:8080/get_by_active_ingredient?name="
 
 //Examples for testing the API
 const produto1 = {
@@ -32,47 +32,47 @@ const produto3 = {
 describe("Testing requests on the get by product name route", () => {
       
     test("Name does not exist in DB", async () => {
-          const data = await fetch(`${getByName}/nomeinvalido`).then(res => res.json())
+          const data = await fetch(`${getByName}nomeinvalido`).then(res => res.json())
           expect(data).toEqual({message: "Bad request"});
     });
     
     test("empty get req", async () => {
-        const data = await fetch(`${getByName}/`).then(res => res.json())
-        expect(data).toEqual({message: "Bad request"});
+        const data = await fetch(`${getByName}`).then(res => res.json())
+        expect(data).toEqual({message: "Empty request"});
     });
 
     test("String with a ?", async () => {
-        const data = await fetch(`${getByName}/vivacor?`).then(res => res.json())
+        const data = await fetch(`${getByName}vivacor?`).then(res => res.json())
         expect(data[0]).toMatchObject(produto1);
     });
 
     test("Space before the parameter", async () => {
-        const data = await fetch(`${getByName}/ vivacor`).then(res => res.json())
+        const data = await fetch(`${getByName} vivacor`).then(res => res.json())
         expect(data[0]).toMatchObject(produto1);
     });
 
     test("Parameter with space", async () => {
-        const data = await fetch(`${getByName}/ viva cor`).then(res => res.json())
+        const data = await fetch(`${getByName} viva cor`).then(res => res.json())
         expect(data[0]).toMatchObject(produto1);
     });
 
     test("Parse numbers on product name", async () => {
-        const data = await fetch(`${getByName}/alburex20`).then(res => res.json())
+        const data = await fetch(`${getByName}alburex20`).then(res => res.json())
         expect(data[0]).toMatchObject(produto3);
     });
 
     test("Ignore special characters", async () => {
-        const data = await fetch(`${getByName}/alburex20!@#$`).then(res => res.json())
+        const data = await fetch(`${getByName}alburex20!@#$`).then(res => res.json())
         expect(data[0]).toMatchObject(produto3);
     });
 
     test("Ignore upppers/lower case", async () => {
-        const data = await fetch(`${getByName}/Alburex20`).then(res => res.json())
+        const data = await fetch(`${getByName}Alburex20`).then(res => res.json())
         expect(data[0]).toMatchObject(produto3);
     });
 
     test("Handle accentuation", async () => {
-        const data = await fetch(`${getByName}/Alburéx20`).then(res => res.json())
+        const data = await fetch(`${getByName}Alburéx20`).then(res => res.json())
         expect(data[0]).toMatchObject(produto3);
     });
 
@@ -84,42 +84,42 @@ describe("Testing requests on the get by product name route", () => {
   describe("Testing requests on the get by active ingredient", () => {
       
     test("Name does not exist in DB", async () => {
-          const data = await fetch(`${getByActive}/nomeinvalido`).then(res => res.json())
+          const data = await fetch(`${getByActive}nomeinvalido`).then(res => res.json())
           expect(data).toEqual({message: "Bad request"});
     });
 
     test("empty get req", async () => {
-        const data = await fetch(`${getByActive}/`).then(res => res.json())
-        expect(data).toEqual({message: "Bad request"});
+        const data = await fetch(`${getByActive}`).then(res => res.json())
+        expect(data).toEqual({message: "Empty request"});
     });
 
     test("String with a ?", async () => {
-        const data = await fetch(`${getByActive}/rosuvastatina?`).then(res => res.json())
+        const data = await fetch(`${getByActive}rosuvastatina?`).then(res => res.json())
         expect(data[0]).toMatchObject(produto1);
     });
 
     test("Space before the parameter", async () => {
-        const data = await fetch(`${getByActive}/ rosuvastatina`).then(res => res.json())
+        const data = await fetch(`${getByActive} rosuvastatina`).then(res => res.json())
         expect(data[0]).toMatchObject(produto1);
     });
 
     test("Parameter with space", async () => {
-        const data = await fetch(`${getByActive}/rosu vastatina`).then(res => res.json())
+        const data = await fetch(`${getByActive}rosu vastatina`).then(res => res.json())
         expect(data[0]).toMatchObject(produto1);
     });
 
     test("Ignore special characters", async () => {
-        const data = await fetch(`${getByActive}/rosuvastatina!@#$`).then(res => res.json())
+        const data = await fetch(`${getByActive}rosuvastatina!@#$`).then(res => res.json())
         expect(data[0]).toMatchObject(produto1);
     });
 
     test("Ignore upppers/lower case", async () => {
-        const data = await fetch(`${getByActive}/Rosuvastatina`).then(res => res.json())
+        const data = await fetch(`${getByActive}Rosuvastatina`).then(res => res.json())
         expect(data[0]).toMatchObject(produto1);
     });
 
     test("Handle accentuation", async () => {
-        const data = await fetch(`${getByActive}/folinato de cálcio`).then(res => res.json())
+        const data = await fetch(`${getByActive}folinato de cálcio`).then(res => res.json())
         expect(data[0]).toMatchObject(produto2);
     });
 

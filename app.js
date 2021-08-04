@@ -29,9 +29,9 @@ app.use(function (ctx) {
  
 
 //ROUTERS
-router.get('/get_by_product_name/:name', async ctx => (await Controllers.getByName(ctx)));                  //get pelo nome comercial
-router.get('/get_by_active_ingredient/:name', async ctx => (await Controllers.getByActive(ctx)));   //get pelo nome do principio ativo
-//router.get('/get_restriction/:name', async ctx => (await getRestriction(ctx)))          //restrição hospitalar
+router.get('/get_by_product_name', async ctx => (await Controllers.getByName(ctx)));                  //get pelo nome comercial
+router.get('/get_by_active_ingredient', async ctx => (await Controllers.getByActive(ctx)));           //get pelo nome do principio ativo
+//restrição hospitalar
 //tarja
 //codigo de barras
 //codigo GGREM
@@ -39,4 +39,4 @@ router.get('/get_by_active_ingredient/:name', async ctx => (await Controllers.ge
 
 
 
-//controllers
+
