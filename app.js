@@ -31,6 +31,13 @@ app.use(function (ctx) {
 //ROUTERS
 router.get('/get_by_product_name', async ctx => (await Controllers.getByName(ctx)));                  //get pelo nome comercial
 router.get('/get_by_active_ingredient', async ctx => (await Controllers.getByActive(ctx)));           //get pelo nome do principio ativo
+
+
+
+
+
+
+
 //restrição hospitalar
 //tarja
 //codigo de barras
